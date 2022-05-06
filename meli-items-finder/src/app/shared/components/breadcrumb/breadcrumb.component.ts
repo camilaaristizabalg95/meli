@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { BreadcrumbsService } from 'src/app/core/services/breadcrumbs.service';
+import { Observable } from 'rxjs';
+import { BreadcrumbModel } from 'src/app/core/models/breadcrumb.model';
 
 @Component({
   selector: 'breadcrumb',
@@ -7,9 +10,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BreadcrumbComponent implements OnInit {
 
-  breadcrumbs: string[] = ['home', 'test1', 'test2', 'test3']
+  breadcrumbs$: Observable<BreadcrumbModel[]> = this.breadcrumbsService.getBreadcrumbs$()
 
-  constructor() { }
+  constructor(
+    public breadcrumbsService: BreadcrumbsService
+  ) { }
 
   ngOnInit(): void {
   }
