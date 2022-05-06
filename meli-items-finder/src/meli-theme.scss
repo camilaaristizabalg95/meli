@@ -12,27 +12,54 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$meli-items-finder-primary: mat-palette($mat-indigo);
-$meli-items-finder-accent: mat-palette($mat-pink, A200, A100, A400);
+$meli-primary: (
+    200: #333333,
+    400: #999999,
+    500: #EEEEEE,
+    700: #FFFFFF,
+    contrast: (
+        300: #3B3B3B,
+        500: #1C0B11,
+        700: #000000
+    )
+);
+
+$meli-accent: (
+    300: #ffed65,
+    500: #FFE600,
+    700: #fdb900,
+    contrast: (
+        300: #3B3B3B,
+        500: #3483FA,
+        700: #000000
+    )
+);
+
+
+$meli-primary-palette: mat-palette($meli-primary);
+$meli-accent-palette: mat-palette($meli-accent);
 
 // The warn palette is optional (defaults to red).
-$meli-items-finder-warn: mat-palette($mat-red);
+$meli-warn-palette: mat-palette($mat-red);
+
+//Create typography
+$meli-typography: mat-typography-config(
+  $font-family: "Roboto"
+);
 
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
-$meli-items-finder-theme: mat-light-theme((
+$meli-light-theme: mat-light-theme((
   color: (
-    primary: $meli-items-finder-primary,
-    accent: $meli-items-finder-accent,
-    warn: $meli-items-finder-warn,
-  )
+    primary: $meli-primary-palette,
+    accent: $meli-accent-palette,
+    warn: $meli-warn-palette,
+  ),
+  typography: ($meli-typography)
 ));
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
-@include angular-material-theme($meli-items-finder-theme);
+@include angular-material-theme($meli-light-theme);
 
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
