@@ -14,19 +14,19 @@ export class HttpService {
   ) { }
 
   getRequest(data: RequestModel): Observable<Object>{
-    return this.http.get(`http://api/${data.params}`)
+    return this.http.get(`http://localhost:3000/${data.params}`)
   }
 
   postRequest(data: RequestModel): Observable<Object>{
-    return this.http.get(`http://api/${data.params}`, data.payload)
+    return this.http.get(`http://localhost:3000/${data.params}`, data.payload)
   }
 
   putRequest(data: RequestModel): Observable<Object>{
-    return this.http.put(`http://api/${data.params}`, data.payload)
+    return this.http.put(`http://localhost:3000/${data.params}`, data.payload)
   }
 
   deleteRequest(data: RequestModel): Observable<Object>{
-    return this.http.delete(`http://api/${data.params}`)
+    return this.http.delete(`http://localhost:3000/${data.params}`)
   }
 
 }
