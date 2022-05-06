@@ -6,6 +6,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
+import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
+import { SHARED_COMPONENTS } from '.';
 
 export const SHARED_MODULES: any[] = [
   CommonModule,
@@ -18,12 +20,15 @@ export const SHARED_MODULES: any[] = [
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    ...SHARED_COMPONENTS
+  ],
   imports: [
     ...SHARED_MODULES
   ],
   exports: [
-    ...SHARED_MODULES
+    ...SHARED_MODULES,
+    ...SHARED_COMPONENTS
   ]
 })
 export class SharedModule { }
