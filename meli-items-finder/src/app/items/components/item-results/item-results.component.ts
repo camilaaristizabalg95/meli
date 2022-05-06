@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
 import { ItemSummaryModel } from '../../../core/models/item-summary.model'
+import { Observable } from 'rxjs';
+import { ItemsService } from 'src/app/core/services/items.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-item-results',
@@ -9,65 +12,22 @@ import { ItemSummaryModel } from '../../../core/models/item-summary.model'
 })
 export class ItemResultsComponent implements OnInit {
 
-  items: ItemSummaryModel[] = [
-    {
-      id: '1',
-      title: 'Apple test test test',
-      price: {
-          currency: 'USD', 
-          amount: 2000, 
-          decimals: 1
-      },
-      city: 'Mendoza',
-      picture: '../../../../assets/images/35084-63981-IMG_1020-xl.jpeg',
-      free_shipping: true,
-      condition: 'Completo Unico!'
-    },
-    {
-      id: '2',
-      title: 'Apple test test 2',
-      price: {
-          currency: 'USD', 
-          amount: 3500.12, 
-          decimals: 1
-      },
-      city: 'Ciudad Federal',
-      picture: '../../../../assets/images/35084-63981-IMG_1020-xl.jpeg',
-      free_shipping: false,
-      condition: 'Renewed'
-    },
-    {
-      id: '2',
-      title: 'Apple test test 2',
-      price: {
-          currency: 'USD', 
-          amount: 3500.12, 
-          decimals: 1
-      },
-      city: 'Ciudad Federal',
-      picture: '../../../../assets/images/35084-63981-IMG_1020-xl.jpeg',
-      free_shipping: false,
-      condition: 'Renewed'
-    },
-    {
-      id: '2',
-      title: 'Apple test test 2',
-      price: {
-          currency: 'USD', 
-          amount: 3500.12, 
-          decimals: 1
-      },
-      city: 'Ciudad Federal',
-      picture: '../../../../assets/images/35084-63981-IMG_1020-xl.jpeg',
-      free_shipping: false,
-      condition: 'Renewed'
-    },
-  ]
+  items$: Observable<ItemSummaryModel[]> = this.itemsService.getItems$();
 
-  constructor() { }
+  constructor(
+    public itemsService: ItemsService,
+    public routeService: ActivatedRoute,
+    public route: Router
+  ) { }
 
   ngOnInit(): void {
-    console.log('buenas')
+    this.routeService.queryParams.subscribe(
+      params => this.itemsService.searchItemsByQuery(params['q'])
+    )
+  }
+
+  seeItem(itemId){
+    this.route.navigate(['/items', itemId])
   }
 
 }

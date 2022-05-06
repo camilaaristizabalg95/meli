@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'item-ext-info',
@@ -6,6 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./item-ext-info.component.sass']
 })
 export class ItemExtInfoComponent implements OnInit {
+
+  @Input('image') image;
+  @Input('description') description;
 
   constructor() { }
 

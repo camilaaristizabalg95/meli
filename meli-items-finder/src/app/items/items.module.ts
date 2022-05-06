@@ -7,6 +7,7 @@ import { ItemPurchaseInfoComponent } from './components/item-purchase-info/item-
 import { ItemExtInfoComponent } from './components/item-ext-info/item-ext-info.component';
 import { ItemsRoutingModule } from './items-routing.module';
 import { SharedModule } from '../shared/shared.module';
+import { ItemsService } from '../core/services/items.service';
 
 
 
@@ -21,6 +22,9 @@ import { SharedModule } from '../shared/shared.module';
     CommonModule,
     ItemsRoutingModule,
     SharedModule
+  ],
+  providers:[
+    ItemsService
   ]
 })
 export class ItemsModule { }

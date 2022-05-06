@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { ItemsService } from 'src/app/core/services/items.service';
+import { Observable } from 'rxjs';
+import { ItemSummaryModel } from 'src/app/core/models/item-summary.model';
 
 @Component({
   selector: 'item-description',
@@ -7,9 +11,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ItemDescriptionComponent implements OnInit {
 
-  constructor() { }
+  item$: Observable<ItemSummaryModel> = this.itemsService.getItemInfo$()
+
+  constructor(
+    public itemsService: ItemsService,
+    public route: ActivatedRoute
+  ) { }
 
   ngOnInit(): void {
+    this.route.params.subscribe(pathParams => this.itemsService.searchItemById(pathParams['id']))
   }
 
 }
