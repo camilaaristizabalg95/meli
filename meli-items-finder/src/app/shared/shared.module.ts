@@ -5,12 +5,14 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
+import { MatCardModule } from '@angular/material/card';
 
 export const SHARED_MODULES: any[] = [
   CommonModule,
   MatInputModule,
   MatIconModule,
   MatButtonModule,
+  MatCardModule,
   FormsModule
 ]
 
