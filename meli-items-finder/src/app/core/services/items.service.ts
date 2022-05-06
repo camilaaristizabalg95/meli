@@ -18,32 +18,31 @@ export class ItemsService {
   ) { }
 
   searchItemsByQuery(query){
-    //Call to api
-    //TO DELETE
-    const request: RequestModel ={
+
+    const request: RequestModel = {
       params:`items?q=${query}`
     }
+
     this.httpService.getRequest(request).pipe(
       map(data => data as ItemSummaryModel[])
     ).subscribe(data => this.items$.next(data))
+
   }
 
   searchItemById(id){
-    //Call to api
-    //TO DELETE
-    // this.item$.next(this.items.find(item => item.id === id))
+    
+    const request: RequestModel = {
+      params:`items/${id}`
+    }
+
+    this.httpService.getRequest(request).pipe(
+      map(data => data as ItemModel)
+    ).subscribe(data => this.item$.next(data))
+
   }
 
   getItems$(){
     return this.items$
-  }
-
-  getItemBasicInfo(){
-
-  }
-
-  getItemDescription(){
-
   }
 
   getItemInfo$(){

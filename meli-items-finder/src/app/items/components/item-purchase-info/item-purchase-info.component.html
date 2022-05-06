@@ -2,8 +2,8 @@
     <p class="add-info">{{condition}} - {{soldQuantity}} Vendidos</p>
     <p class="title">{{title}}</p>
     <div class="price">
-        <p class="amount">{{price.amount | currency:price.currency}}</p>
-        <p class="decimals">00</p>
+        <p class="amount">{{price?.amount | currency:price?.currency:'symbol-narrow':'1.0-0'}}</p>
+        <p class="decimals">{{price?.decimals | currency:'':'':'2.0-0'}}</p>
     </div>
     <button class="purchase-btn" mat-flat-button>Comprar</button>
 </div>
