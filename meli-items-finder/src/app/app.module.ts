@@ -8,6 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SearchBarComponent } from './shared/components/search-bar/search-bar.component';
 import { BreadcrumbsService } from './core/services/breadcrumbs.service';
 import { HttpClientModule } from '@angular/common/http';
+import { HttpService } from './core/services/http.service';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule
   ],
   providers: [
-    BreadcrumbsService
+    BreadcrumbsService,
+    HttpService
   ],
   bootstrap: [AppComponent]
 })

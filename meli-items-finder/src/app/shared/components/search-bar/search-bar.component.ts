@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ItemsService } from 'src/app/core/services/items.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'search-bar',
@@ -9,13 +11,16 @@ export class SearchBarComponent implements OnInit {
 
   query = "";
 
-  constructor() { }
+  constructor(
+    public itemsService: ItemsService,
+    public router: Router
+  ) { }
 
   ngOnInit(): void {
   }
 
-  test(){
-    console.log('query', this.query)
+  search(){
+    this.router.navigate(['items'],{queryParams: {q:this.query}})
   }
 
 }

@@ -15,13 +15,11 @@ export class BreadcrumbsService {
   }
 
   getBreadcrumbs$(){
-    console.log(this.breadcrumbs)
     return this.breadcrumbs$
   }
 
   editBreadcrumbs(breadcrumb: BreadcrumbModel){
     this.breadcrumbs.push(breadcrumb)
-    console.log(this.breadcrumbs)
     this.breadcrumbs$.next(this.breadcrumbs)
   }
 

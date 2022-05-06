@@ -1,4 +1,14 @@
 <mat-card class="item-ctr">
-    <item-ext-info class="ext-info"></item-ext-info>
-    <item-purchase-info class="purchase-info"></item-purchase-info>
+    <item-ext-info 
+    [image]="(item$ | async).picture"
+    [description]="(item$ | async).description"
+    class="ext-info">
+    </item-ext-info>
+    <item-purchase-info 
+    [condition]="(item$ | async).condition"
+    [soldQuantity]="(item$ | async).sold_quantity"
+    [title]="(item$ | async).title"
+    [price]="(item$ | async).price"
+    class="purchase-info">
+    </item-purchase-info>
 </mat-card>

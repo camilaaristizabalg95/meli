@@ -1,6 +1,7 @@
 <div class="items-ctr">
     <item-card 
-    *ngFor="let item of items"
+    *ngFor="let item of (items$ | async)"
     [item]="item"
+    (click)="seeItem(item.id)"
     class="item-card"></item-card>
 </div>
