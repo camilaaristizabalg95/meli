@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-item-ext-info',
+  selector: 'item-ext-info',
   templateUrl: './item-ext-info.component.html',
   styleUrls: ['./item-ext-info.component.sass']
 })

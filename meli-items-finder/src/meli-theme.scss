@@ -71,9 +71,18 @@ input{
   outline: none!important;
 }
 
-.mat-card{
+.item-card > .mat-card{
   box-shadow: none!important;
 }
 .card-separator{
   border-bottom: 1px mat-color($meli-primary-palette) solid!important;
+}
+
+.purchase-btn{
+  background-color: mat-color($meli-accent-palette,'500-contrast')!important;
+  color: mat-color($meli-primary-palette,700)!important;
+}
+
+.desc-ctr > p{
+  color: mat-color($meli-primary-palette,400)!important;
 }
