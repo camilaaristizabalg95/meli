@@ -1,6 +1,6 @@
 <div class="breadcrumb-ctr">
-    <span *ngFor="let breadcrumb of breadcrumbs; let i = index">
-        {{breadcrumb}}
-        <span *ngIf="i != breadcrumbs.length -1">&gt;</span>
+    <span *ngFor="let breadcrumb of (breadcrumbs$ | async); let i = index">
+        {{breadcrumb.description}}
+        <span *ngIf="i != (breadcrumbs$ | async).length -1">&gt;</span>
     </span>
 </div>

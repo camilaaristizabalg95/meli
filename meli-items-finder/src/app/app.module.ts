@@ -6,6 +6,7 @@ import { SharedModule } from './shared/shared.module'
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SearchBarComponent } from './shared/components/search-bar/search-bar.component';
+import { BreadcrumbsService } from './core/services/breadcrumbs.service';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,9 @@ import { SearchBarComponent } from './shared/components/search-bar/search-bar.co
     BrowserAnimationsModule,
     SharedModule
   ],
-  providers: [],
+  providers: [
+    BreadcrumbsService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
