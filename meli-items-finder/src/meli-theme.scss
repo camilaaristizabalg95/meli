@@ -70,3 +70,10 @@ input{
   caret-color: mat-color($meli-primary-palette, darker-contrast)!important;
   outline: none!important;
 }
+
+.mat-card{
+  box-shadow: none!important;
+}
+.card-separator{
+  border-bottom: 1px mat-color($meli-primary-palette) solid!important;
+}

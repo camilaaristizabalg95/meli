@@ -1,1 +1,6 @@
-<p>item-results works!</p>
+<div class="items-ctr">
+    <item-card 
+    *ngFor="let item of items"
+    [item]="item"
+    class="item-card"></item-card>
+</div>
