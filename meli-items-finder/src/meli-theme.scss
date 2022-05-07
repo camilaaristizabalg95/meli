@@ -63,6 +63,10 @@ $meli-light-theme: mat-light-theme((
 // that you are using.
 @include angular-material-theme($meli-light-theme);
 
+body{
+  background-color: mat-color($meli-primary-palette);
+}
+
 .header{
   background-color: mat-color($meli-accent-palette)!important;
 }
