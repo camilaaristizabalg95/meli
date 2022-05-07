@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var FetchWrapper = require('../utils/fetchWrapper')
 var mapItem = require('../utils/mapItem')
+var utilFunctions = require('../utils/function-utils')
 
 const meliAPI = new FetchWrapper('https://api.mercadolibre.com')
 
@@ -11,8 +12,21 @@ router.get('/',(req, res) => {
     meliAPI.get(`sites/MLA/search?q=${req.query.q}`)
     .then((data) => {
       let {results} = data
-      results = results.map(result => mapItem(result))
-      res.send(JSON.stringify(results))
+      const mostRepeatedCat = utilFunctions.getMostRepeatedItem(results.map(result => result.category_id))
+
+      meliAPI.get(`categories/${mostRepeatedCat}`)
+      .then((data) => {
+        const categories = data.path_from_root.map(path => path.name)
+
+        results = {
+          ...{}, 
+          items:results.map(result => mapItem(result)), 
+          categories
+        }
+
+        res.send(JSON.stringify(utilFunctions.addSignature(results)))
+      }).catch(error => console.error(error))
+
     }).catch(error => console.error(error))
   }
 
@@ -26,9 +40,25 @@ router.get('/:id',(req, res) => {
     meliAPI.get(`items/${req.params.id}/description`)
   ]
 
-  Promise.all(promisArr).then((data)=>{
-    const result = mapItem({...data[0],...data[1]})
-    res.send(JSON.stringify(result))
+  Promise.all(promisArr).then(([item, description])=>{
+    let result = {
+        ...{},
+        item: mapItem({...item,...description})
+    }
+    meliAPI.get(`categories/${item.category_id}`)
+    .then((data) => {
+      const categories = data.path_from_root.map(path => path.name)
+
+      result = {
+        ...result,
+        item: {
+          ...result.item,
+          categories
+        }
+      }
+  
+      res.send(JSON.stringify(utilFunctions.addSignature(result)))
+    })
   }).catch(error=>console.error(error))
 }
 

@@ -11,7 +11,8 @@ const mapItem = (item) =>{
         condition: item.condition,
         free_shipping: item.shipping.free_shipping,
         city: item.address ? item.address.city_name : '',
-        description: item.plain_text ? item.plain_text : ''
+        description: item.plain_text ? item.plain_text : '',
+        sold_quantity: item.sold_quantity
     })
 }
 

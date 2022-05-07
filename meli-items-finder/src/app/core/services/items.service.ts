@@ -4,6 +4,8 @@ import { map } from 'rxjs/operators'
 import { ItemSummaryModel, ItemModel } from '../models/item-summary.model';
 import { HttpService } from './http.service';
 import { RequestModel } from '../models/request.model';
+import { ItemResultModel } from '../models/item-result.model';
+import { BreadcrumbsService } from './breadcrumbs.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,10 +13,11 @@ import { RequestModel } from '../models/request.model';
 export class ItemsService {
 
   private items$: BehaviorSubject<ItemSummaryModel[]> = new BehaviorSubject([])
-  private item$: BehaviorSubject<ItemModel> = new BehaviorSubject(null)
+  private item$: BehaviorSubject<ItemSummaryModel> = new BehaviorSubject(null)
 
   constructor(
-    private httpService: HttpService
+    private httpService: HttpService,
+    private breadcrumbsService: BreadcrumbsService
   ) { }
 
   searchItemsByQuery(query){
@@ -24,8 +27,16 @@ export class ItemsService {
     }
 
     this.httpService.getRequest(request).pipe(
-      map(data => data as ItemSummaryModel[])
-    ).subscribe(data => this.items$.next(data))
+      map(data => data as ItemResultModel),
+      map(data => ({...{},items: [...data.items], categories: data.categories}))
+    ).subscribe(data => {
+      this.breadcrumbsService.clearBreadcrumbs();
+      data.categories.forEach(
+        category => this.breadcrumbsService.editBreadcrumbs({link: '', description: category})
+      )
+      this.items$.next(data.items)
+    }
+    )
 
   }
 
@@ -36,8 +47,15 @@ export class ItemsService {
     }
 
     this.httpService.getRequest(request).pipe(
-      map(data => data as ItemModel)
-    ).subscribe(data => this.item$.next(data))
+      map(data => data as ItemModel),
+      map(data => data.item)
+    ).subscribe(data => {
+      this.breadcrumbsService.clearBreadcrumbs();
+      data.categories.forEach(
+        category => this.breadcrumbsService.editBreadcrumbs({link: '', description: category})
+      )
+      this.item$.next(data)
+    })
 
   }
 
