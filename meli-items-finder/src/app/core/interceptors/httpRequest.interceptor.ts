@@ -3,22 +3,29 @@ import {
   HttpRequest,
   HttpHandler,
   HttpEvent,
-  HttpInterceptor
+  HttpInterceptor,
+  HttpErrorResponse
 } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { finalize, catchError } from 'rxjs/operators';
+import { Observable, throwError, of } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { Router } from '@angular/router';
+
+import { ErrorHandler } from '../../utils/functions.utils'
+import { CustomError } from '../../core/models/customError.model'
 
 @Injectable()
 export class HttpRequestInterceptor implements HttpInterceptor {
 
-  constructor() {}
+  errorHandler = new ErrorHandler(this.router);
+  
+  constructor(
+    private router: Router
+  ) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    console.log(request)
     return next.handle(request).pipe(
-      finalize(()=>console.log(request)),
       catchError(error => {
-        console.log(error)
+        this.errorHandler.getAction(error as CustomError)();
         return throwError(error)
       })
     )

@@ -3,6 +3,7 @@ var router = express.Router();
 var FetchWrapper = require('../utils/fetchWrapper')
 var mapItem = require('../utils/mapItem')
 var utilFunctions = require('../utils/function-utils')
+var CustomError = require('../utils/customError')
 
 const meliAPI = new FetchWrapper('https://api.mercadolibre.com')
 
@@ -14,26 +15,22 @@ router.get('/',(req, res) => {
       let {results} = data
 
       if(results.length === 0) {
-        res.status(404).send('No hay items para esta busqueda')
-        return
+        throw new CustomError('Lo sentimos, no encontramos items para esta busqueda', 404)
       }
 
       const mostRepeatedCat = utilFunctions.getMostRepeatedItem(results.map(result => result.category_id))
 
       meliAPI.get(`categories/${mostRepeatedCat}`)
       .then((data) => {
-        const categories = data.path_from_root.map(path => path.name)
-
         results = {
           ...{}, 
-          items:results.map(result => mapItem(result)), 
-          categories
+          items: results.map(result => mapItem(result)), 
+          categories: data.path_from_root.map(path => path.name)
         }
-
         res.send(JSON.stringify(utilFunctions.addSignature(results)))
-      }).catch(error => console.error(error))
+      }).catch(error => res.status(error.status).send(error.message))
 
-    }).catch(error => console.error(error))
+    }).catch(error => res.status(error.status).send(error.message))
   }
 
 );
@@ -65,7 +62,7 @@ router.get('/:id',(req, res) => {
   
       res.send(JSON.stringify(utilFunctions.addSignature(result)))
     })
-  }).catch(error => res.status(404).send('No hay items para esta busqueda'))
+  }).catch(error => res.status(404).send('Lo sentimos, no encontramos items para esta busqueda'))
 }
 
 );
