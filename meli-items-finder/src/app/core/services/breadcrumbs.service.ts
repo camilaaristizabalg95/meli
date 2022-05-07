@@ -8,10 +8,9 @@ import { BreadcrumbModel } from '../models/breadcrumb.model';
 export class BreadcrumbsService {
 
   private breadcrumbs$: BehaviorSubject<BreadcrumbModel[]> = new BehaviorSubject([]);
-  private breadcrumbs: BreadcrumbModel[] = []
 
   constructor() { 
-    this.breadcrumbs$.next(this.breadcrumbs)
+    this.breadcrumbs$.next([])
   }
 
   getBreadcrumbs$(){
@@ -20,12 +19,10 @@ export class BreadcrumbsService {
 
   editBreadcrumbs(breadcrumbs: BreadcrumbModel[]){
     this.clearBreadcrumbs()
-    this.breadcrumbs = [...breadcrumbs]
-    this.breadcrumbs$.next(this.breadcrumbs)
+    this.breadcrumbs$.next([...breadcrumbs])
   }
 
   clearBreadcrumbs(){
-    this.breadcrumbs.length = 0;
-    this.breadcrumbs$.next(this.breadcrumbs)
+    this.breadcrumbs$.next([])
   }
 }
