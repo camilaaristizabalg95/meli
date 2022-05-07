@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ItemsService } from 'src/app/core/services/items.service';
 import { Observable } from 'rxjs';
 import { ItemSummaryModel } from 'src/app/core/models/item-summary.model';
+import { PreloaderService } from 'src/app/core/services/preloader.service';
 
 @Component({
   selector: 'item-description',
@@ -11,11 +12,13 @@ import { ItemSummaryModel } from 'src/app/core/models/item-summary.model';
 })
 export class ItemDescriptionComponent implements OnInit {
 
-  item$: Observable<ItemSummaryModel> = this.itemsService.getItemInfo$()
+  item$: Observable<ItemSummaryModel> = this.itemsService.getItemInfo$();
+  loading$: Observable<boolean> = this.preloaderService.getLoading$();
 
   constructor(
-    public itemsService: ItemsService,
-    public route: ActivatedRoute
+    private itemsService: ItemsService,
+    private route: ActivatedRoute,
+    private preloaderService: PreloaderService
   ) { }
 
   ngOnInit(): void {

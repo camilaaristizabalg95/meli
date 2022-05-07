@@ -1,7 +1,16 @@
 <section class="items-ctr">
-    <item-card 
-    *ngFor="let item of (items$ | async)"
-    [item]="item"
-    (click)="seeItem(item.id)"
-    class="item-card"></item-card>
+    <div class="results" *ngIf="!( loading$ | async); else skeleton">
+        <item-card 
+        *ngFor="let item of (items$ | async)"
+        [item]="item"
+        (click)="seeItem(item.id)"
+        class="item-card"></item-card>
+    </div>
+    <ng-template #skeleton>
+        <rectangular-skeleton
+        [width]="'90%'"
+        [height]="'212px'"
+        [count]="'5'"
+        class="sk-ctr"></rectangular-skeleton>
+    </ng-template>
 </section>

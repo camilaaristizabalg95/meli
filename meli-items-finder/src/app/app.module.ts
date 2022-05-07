@@ -5,8 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module'
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { SearchBarComponent } from './shared/components/search-bar/search-bar.component';
 import { BreadcrumbsService } from './core/services/breadcrumbs.service';
+import { PreloaderService } from './core/services/preloader.service';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpService } from './core/services/http.service';
 import { HttpRequestInterceptor } from './core/interceptors/httpRequest.interceptor';
@@ -25,6 +25,7 @@ import { HttpRequestInterceptor } from './core/interceptors/httpRequest.intercep
   providers: [
     BreadcrumbsService,
     HttpService,
+    PreloaderService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpRequestInterceptor,

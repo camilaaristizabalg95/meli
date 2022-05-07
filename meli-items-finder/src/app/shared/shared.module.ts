@@ -6,7 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
-import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
+
 import { SHARED_COMPONENTS } from '.';
 
 export const SHARED_MODULES: any[] = [

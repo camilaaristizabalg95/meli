@@ -7,11 +7,12 @@ import {
   HttpErrorResponse
 } from '@angular/common/http';
 import { Observable, throwError, of } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, finalize } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
 import { ErrorHandler } from '../../utils/functions.utils'
 import { CustomError } from '../../core/models/customError.model'
+import { PreloaderService } from '../services/preloader.service';
 
 @Injectable()
 export class HttpRequestInterceptor implements HttpInterceptor {
@@ -19,11 +20,16 @@ export class HttpRequestInterceptor implements HttpInterceptor {
   errorHandler = new ErrorHandler(this.router);
   
   constructor(
-    private router: Router
+    private router: Router,
+    private preloaderService: PreloaderService
   ) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+
+    this.preloaderService.setLoading();
+
     return next.handle(request).pipe(
+      finalize(() => this.preloaderService.clearLoading()),
       catchError(error => {
         this.errorHandler.getAction(error as CustomError)();
         return throwError(error)
