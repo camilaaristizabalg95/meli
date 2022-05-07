@@ -18,8 +18,9 @@ export class BreadcrumbsService {
     return this.breadcrumbs$
   }
 
-  editBreadcrumbs(breadcrumb: BreadcrumbModel){
-    this.breadcrumbs.push(breadcrumb)
+  editBreadcrumbs(breadcrumbs: BreadcrumbModel[]){
+    this.clearBreadcrumbs()
+    this.breadcrumbs = [...breadcrumbs]
     this.breadcrumbs$.next(this.breadcrumbs)
   }
 

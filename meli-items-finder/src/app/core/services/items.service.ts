@@ -30,9 +30,8 @@ export class ItemsService {
       map(data => data as ItemResultModel),
       map(data => ({...{},items: [...data.items], categories: data.categories}))
     ).subscribe(data => {
-      this.breadcrumbsService.clearBreadcrumbs();
-      data.categories.forEach(
-        category => this.breadcrumbsService.editBreadcrumbs({link: '', description: category})
+      this.breadcrumbsService.editBreadcrumbs(
+        data.categories.map(cat => ({...{}, link: '', description: cat}))
       )
       this.items$.next(data.items)
     }
@@ -50,9 +49,8 @@ export class ItemsService {
       map(data => data as ItemModel),
       map(data => data.item)
     ).subscribe(data => {
-      this.breadcrumbsService.clearBreadcrumbs();
-      data.categories.forEach(
-        category => this.breadcrumbsService.editBreadcrumbs({link: '', description: category})
+      this.breadcrumbsService.editBreadcrumbs(
+        data.categories.map(cat => ({...{}, link: '', description: cat}))
       )
       this.item$.next(data)
     })
