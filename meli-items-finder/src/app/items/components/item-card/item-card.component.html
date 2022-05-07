@@ -1,6 +1,6 @@
 <mat-card class="item-card">
     <div class="image-ctr">
-        <img [src]="item.picture">
+        <img [src]="item.picture != '' ? item.picture : '../../../../assets/images/img_placeholder.jpeg'">
     </div>
     <div class="item-summary">
         <div class="sum-1">

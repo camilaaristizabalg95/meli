@@ -1,6 +1,6 @@
 <div class="desc-ctr">
     <div class="image-ctr">
-        <img [src]="image">
+        <img [src]="image != '' ? image : '../../../../assets/images/img_placeholder.jpeg/'">
     </div>
     <h2>Descripcion del producto</h2>
     <p [ngClass]="{
