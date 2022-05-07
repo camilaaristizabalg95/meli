@@ -12,6 +12,12 @@ router.get('/',(req, res) => {
     meliAPI.get(`sites/MLA/search?q=${req.query.q}`)
     .then((data) => {
       let {results} = data
+
+      if(results.length === 0) {
+        res.status(404).send('No hay items para esta busqueda')
+        return
+      }
+
       const mostRepeatedCat = utilFunctions.getMostRepeatedItem(results.map(result => result.category_id))
 
       meliAPI.get(`categories/${mostRepeatedCat}`)
@@ -59,7 +65,7 @@ router.get('/:id',(req, res) => {
   
       res.send(JSON.stringify(utilFunctions.addSignature(result)))
     })
-  }).catch(error=>console.error(error))
+  }).catch(error => res.status(404).send('No hay items para esta busqueda'))
 }
 
 );

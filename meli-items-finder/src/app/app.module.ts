@@ -9,6 +9,7 @@ import { SearchBarComponent } from './shared/components/search-bar/search-bar.co
 import { BreadcrumbsService } from './core/services/breadcrumbs.service';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpService } from './core/services/http.service';
+import { HttpRequestInterceptor } from './core/interceptors/httpRequest.interceptor';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { HttpService } from './core/services/http.service';
   ],
   providers: [
     BreadcrumbsService,
-    HttpService
+    HttpService,
+    HttpRequestInterceptor
   ],
   bootstrap: [AppComponent]
 })
