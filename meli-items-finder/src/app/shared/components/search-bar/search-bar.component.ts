@@ -13,7 +13,7 @@ export class SearchBarComponent implements OnInit {
 
   constructor(
     public itemsService: ItemsService,
-    public router: Router
+    private router: Router
   ) { }
 
   ngOnInit(): void {

@@ -7,13 +7,13 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SearchBarComponent } from './shared/components/search-bar/search-bar.component';
 import { BreadcrumbsService } from './core/services/breadcrumbs.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpService } from './core/services/http.service';
+import { HttpRequestInterceptor } from './core/interceptors/httpRequest.interceptor';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    SearchBarComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +24,12 @@ import { HttpService } from './core/services/http.service';
   ],
   providers: [
     BreadcrumbsService,
-    HttpService
+    HttpService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpRequestInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

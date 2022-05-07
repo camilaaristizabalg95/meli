@@ -97,6 +97,10 @@ input{
   color: mat-color($meli-primary-palette,200)!important;
 }
 
-.breadcrumb-ctr>span{
+.breadcrumb-ctr > span{
+  color: mat-color($meli-primary-palette,400)!important;
+}
+
+.not-found-ctr > h1{
   color: mat-color($meli-primary-palette,400)!important;
 }
