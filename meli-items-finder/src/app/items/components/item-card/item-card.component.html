@@ -8,9 +8,9 @@
                 <p>{{item.price.amount | currency:item.price.currency:'symbol-narrow':'1.0-0'}}</p>
                 <img *ngIf="item.free_shipping" class="shipping-img" src="../../../../assets/images/ic_shipping.png">
             </div>
-            <p>{{item.city}}</p>
+            <p class="city">{{item.city}}</p>
         </div>
-        <p>{{item.title}}</p>
+        <p class="title">{{item.title}}</p>
         <p>{{item.condition}}</p>
     </div>
 </mat-card>

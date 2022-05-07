@@ -1,4 +1,4 @@
-<mat-card class="item-ctr">
+<mat-card class="item-ctr" *ngIf="!( loading$ | async);else skeleton">
     <item-ext-info 
     [image]="(item$ | async)?.picture"
     [description]="(item$ | async)?.description"
@@ -12,3 +12,18 @@
     class="purchase-info">
     </item-purchase-info>
 </mat-card>
+
+<ng-template #skeleton>
+    <mat-card class="item-ctr">
+        <rectangular-skeleton
+        [width]="'90%'"
+        [height]="'400px'"
+        [count]="'1'"
+        class="sk-ctr"></rectangular-skeleton>
+        <rectangular-skeleton
+        [width]="'90%'"
+        [height]="'100px'"
+        [count]="'1'"
+        class="sk-ctr"></rectangular-skeleton>
+    </mat-card>
+</ng-template>

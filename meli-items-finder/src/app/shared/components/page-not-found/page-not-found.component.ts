@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BreadcrumbsService } from 'src/app/core/services/breadcrumbs.service';
 
 @Component({
   selector: 'app-page-not-found',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PageNotFoundComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private breadcrumbsService: BreadcrumbsService
+  ) { }
 
   ngOnInit(): void {
+    this.breadcrumbsService.clearBreadcrumbs();
   }
 
 }

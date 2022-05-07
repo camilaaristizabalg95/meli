@@ -4,6 +4,7 @@ import { ItemSummaryModel } from '../../../core/models/item-summary.model'
 import { Observable } from 'rxjs';
 import { ItemsService } from 'src/app/core/services/items.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { PreloaderService } from 'src/app/core/services/preloader.service';
 
 @Component({
   selector: 'app-item-results',
@@ -13,11 +14,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class ItemResultsComponent implements OnInit {
 
   items$: Observable<ItemSummaryModel[]> = this.itemsService.getItems$();
+  loading$: Observable<boolean> = this.preloaderService.getLoading$();
 
   constructor(
-    public itemsService: ItemsService,
-    public routeService: ActivatedRoute,
-    public route: Router
+    private itemsService: ItemsService,
+    private routeService: ActivatedRoute,
+    private route: Router,
+    private preloaderService: PreloaderService
   ) { }
 
   ngOnInit(): void {
