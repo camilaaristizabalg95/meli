@@ -10,6 +10,8 @@ export class ItemExtInfoComponent implements OnInit {
   @Input('image') image;
   @Input('description') description;
 
+  showMore = false;
+
   constructor() { }
 
   ngOnInit(): void {
