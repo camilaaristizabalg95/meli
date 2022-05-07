@@ -1,3 +1,5 @@
+import { SignatureModel } from './signature.model'
+
 export interface ItemSummaryModel{
     id: string;
     title: string;
@@ -6,11 +8,13 @@ export interface ItemSummaryModel{
     picture: string;
     free_shipping: boolean;
     condition: string;
+    sold_quantity?: number;
+    description?: string;
+    categories: string[];
 }
 
-export interface ItemModel extends ItemSummaryModel{
-    sold_quantity: number;
-    description: string;
+export interface ItemModel extends SignatureModel{
+    item: ItemSummaryModel
 }
 
 export interface PriceModel{
