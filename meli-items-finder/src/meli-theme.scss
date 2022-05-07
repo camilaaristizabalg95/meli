@@ -70,6 +70,9 @@ input{
   caret-color: mat-color($meli-primary-palette, darker-contrast)!important;
   outline: none!important;
 }
+.search-button.mat-flat-button.mat-primary{
+  color: mat-color($meli-primary-palette,400)!important;
+}
 
 .item-card > .mat-card{
   box-shadow: none!important;
