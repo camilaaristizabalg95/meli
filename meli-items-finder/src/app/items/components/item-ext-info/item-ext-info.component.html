@@ -3,5 +3,10 @@
         <img [src]="image">
     </div>
     <h2>Descripcion del producto</h2>
-    <p>{{description}}</p>
+    <p [ngClass]="{
+        'short': !showMore,
+        'ext': showMore}">
+        {{description}}
+    </p>
+    <button mat-flat-button color="primary" (click)="showMore = !showMore"> {{showMore ? 'Show Less' : 'Show More'}} </button>
 </div>

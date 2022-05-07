@@ -93,6 +93,9 @@ input{
 .desc-ctr > p{
   color: mat-color($meli-primary-palette,400)!important;
 }
+.desc-ctr > button{
+  color: mat-color($meli-primary-palette,200)!important;
+}
 
 .breadcrumb-ctr>span{
   color: mat-color($meli-primary-palette,400)!important;
