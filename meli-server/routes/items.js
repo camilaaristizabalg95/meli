@@ -1,14 +1,10 @@
 var express = require('express');
 var router = express.Router();
-var FetchWrapper = require('../services/http/fetchWrapper');
+
+
 var utilFunctions = require('../utils/function-utils');
-var CustomError = require('../utils/customError');
 var Meli = require('../services/meli/meli')
-const rxjs = require('rxjs')
 
-
-const meliAPI = new FetchWrapper('https://api.mercadolibre.com')
-const api = new FetchWrapper('http://localhost:3000', false)
 
 /* GET items listing that matches a query. */
 router.get('/',(req, res) => {
