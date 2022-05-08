@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 var FetchWrapper = require('../utils/fetchWrapper');
-var mapItem = require('../utils/mapItem');
 var utilFunctions = require('../utils/function-utils');
 var CustomError = require('../utils/customError');
 
@@ -27,7 +26,7 @@ router.get('/',(req, res) => {
         .then(categoriesInfo =>{
           results = {
             ...{}, 
-            items: results.map(result => mapItem(result)), 
+            items: results.map(result => utilFunctions.mapItem(result)), 
             categories: categoriesInfo
           }
           res.send(JSON.stringify(utilFunctions.addSignature(results)))
