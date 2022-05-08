@@ -21,9 +21,8 @@ export class ItemsService {
   ) { }
 
   searchItemsByQuery(query){
-
     const request: RequestModel = {
-      params:`items?q=${query}`
+      params:`items?q=${query}&limit=4`
     }
 
     this.httpService.getRequest(request).pipe(

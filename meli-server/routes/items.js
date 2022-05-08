@@ -11,7 +11,7 @@ const api = new FetchWrapper('http://localhost:3000', false)
 /* GET items listing that matches a query. */
 router.get('/',(req, res) => {
 
-    meliAPI.get(`sites/MLA/search?q=${req.query.q}`)
+    meliAPI.get(`sites/MLA/search?q=${req.query.q}&limit=${req.query.limit}`)
     .then((data) => {
       let {results} = data
 

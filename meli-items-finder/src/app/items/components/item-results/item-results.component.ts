@@ -25,7 +25,7 @@ export class ItemResultsComponent implements OnInit {
 
   ngOnInit(): void {
     this.routeService.queryParams.subscribe(
-      params => this.itemsService.searchItemsByQuery(params['q'])
+      params => this.itemsService.searchItemsByQuery(params['search'])
     )
   }
 
