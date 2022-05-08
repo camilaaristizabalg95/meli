@@ -1,3 +1,5 @@
+var FetchWrapper = require('../utils/fetchWrapper');
+
 const getMostRepeatedItem = (arr) => {
     const countArr = arr.reduce((acc,key)=> {
         if(acc.some(item => item.key === key)) 
@@ -15,6 +17,31 @@ const getMostRepeatedItem = (arr) => {
 
 }
 
+const getCategoriesNameAndLink = (categories) => {
+    const api = new FetchWrapper('http://localhost:3000', false)
+    let categoriesLinks = []
+    let resolvedPetitions = 0
+    return new Promise (
+        (resolve) => categories.forEach((category,index) => {
+        api.get(`categories/info/${category.id}`)
+        .then(data => {
+            categoriesLinks.push(data)
+            resolvedPetitions ++;
+            if(resolvedPetitions === categories.length) {
+                resolve(
+                    categories.map(
+                        category => ({
+                            description: category.name, 
+                            link: categoriesLinks.find(cat => cat.id === category.id).link
+                        })
+                    )
+                );
+            }
+        })
+         })
+    )
+}
+
 const addSignature = (obj) => {
     return ({
         ...obj, 
@@ -25,4 +52,4 @@ const addSignature = (obj) => {
     })
 }
 
-module.exports = {getMostRepeatedItem, addSignature};
+module.exports = {getMostRepeatedItem, addSignature, getCategoriesNameAndLink};

@@ -19,4 +19,8 @@ export class BreadcrumbComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  navigateTo(link: string){
+    console.log(`Navigate to ${link} ⛵️`)
+  }
+
 }

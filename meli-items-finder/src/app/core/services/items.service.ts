@@ -30,9 +30,7 @@ export class ItemsService {
       map(data => data as ItemResultModel),
       map(data => ({...{},items: [...data.items], categories: data.categories}))
     ).subscribe(data => {
-      this.breadcrumbsService.editBreadcrumbs(
-        data.categories.map(cat => ({...{}, link: '', description: cat}))
-      )
+      this.breadcrumbsService.editBreadcrumbs(data.categories)
       this.items$.next(data.items)
     }
     )
@@ -49,9 +47,7 @@ export class ItemsService {
       map(data => data as ItemModel),
       map(data => data.item)
     ).subscribe(data => {
-      this.breadcrumbsService.editBreadcrumbs(
-        data.categories.map(cat => ({...{}, link: '', description: cat}))
-      )
+      this.breadcrumbsService.editBreadcrumbs(data.categories)
       this.item$.next(data)
     })
 
