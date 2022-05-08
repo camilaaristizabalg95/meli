@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 
 import { ErrorHandler } from '../../utils/functions.utils'
 import { CustomError } from '../../core/models/customError.model'
-import { PreloaderService } from '../services/preloader.service';
+import { PreloaderService } from '../services/preloader/preloader.service';
 
 @Injectable()
 export class HttpRequestInterceptor implements HttpInterceptor {

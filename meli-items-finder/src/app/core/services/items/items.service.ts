@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Subject, BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators'
-import { ItemSummaryModel, ItemModel } from '../models/item-summary.model';
-import { HttpService } from './http.service';
-import { RequestModel } from '../models/request.model';
-import { ItemResultModel } from '../models/item-result.model';
-import { BreadcrumbsService } from './breadcrumbs.service';
+import { ItemSummaryModel, ItemModel } from '../../models/item-summary.model';
+import { HttpService } from '../http/http.service';
+import { RequestModel } from '../../models/request.model';
+import { ItemResultModel } from '../../models/item-result.model';
+import { BreadcrumbsService } from '../breadcrumbs/breadcrumbs.service';
 
 @Injectable({
   providedIn: 'root'
