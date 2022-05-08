@@ -37,32 +37,37 @@ Después de esto planteé la estructura del proyecto (que cambioó en el proceso
 ![ProjetStructure](assets/project-structure-client.png)
 ![ProjetStructure](assets/project-structure-server.png)
 
-<iframe width="768" height="432" src="https://miro.com/app/live-embed/uXjVO3MZnyI=/?moveToViewport=-32197,19150,43154,21240" frameBorder="0" scrolling="no" allowFullScreen></iframe>
+La siguiente tabla explica los diferentes recursos del cliente:
+
+|Nombre del Recurso          |Naturaleza |Explicación                                                                                                                     |
+|----------------------------|-----------|--------------------------------------------------------------------------------------------------------------------------------|
+|ItemsModule                 |Module     |Módulo de funcionalidad de items. Contiene los componentes y servicios relacionados y solamente relacionados con los items      |
+|ItemsRoutingModule          |Module     |Módulo de ruteo de items. Se encarga de cargar los componentes necesarions para las diferentes ruas de la funcionalidad de items|
+|ItemResultComponent         |Component  |Sección principal de los resultados de la búsqueda de items                                                                     |
+|ItemDescriptionComponent    |Component  |Sección principal de la descripción extendida de un item                                                                        |
+|ItemCardComponent           |Component  |Información del item en forma de card                                                                                           |
+|ItemPurchaseInfoComponent   |Component  |Caja de información de purchase del item                                                                                        |
+|ItemExtInfoComponent        |Component  |Caja de información extendida del item                                                                                          |
+|Preloader Service           |Service    |Contiene todos los métodos y las propiedades relacionados con el preloader del aplicativo                                       |
+|HttpService                 |Service    |Contiene los métodos necesarios para realizar peticiones http                                                                   |
+|BreadcrumbService           |Service    |Contiene todos los métodos y propiedades relacionados para el manejo de los breadcrumbs del aplicativo                          |
+|ItemsService                |Service    |Contiene todos los métodos y propiedades relacionados con el manejo de los items                                                |
+|HttpInterceptor             |Interceptor|Servicio que intercepta todas las peticiones http del cliente para hacer manejo de errores y skeletons                          |
+|BreadcrumbComponent         |Component  |Navegación tipo breadcrumb de la aplicación                                                                                     |
+|PageNotFoundComponent       |Component  |Página de not found en caso de que alguna petición no haya encontrado resultados                                                |
+|RectangularSkeletonComponent|Component  |Skeletons utilizados para dar loa sensación de carga mientras la petición http se resuelve                                      |
+|SearchBarComponent          |Component  |Componente de búsqueda del aplicativo                                                                                           |
+|Meli Theme                  |Style      |Paleta de colores y tipografía de MeLi                                                                                          |
+|BreadcrumbModel             |Interface  |Interfaz de breadcrumbs                                                                                                         |
+|CustomErrorModel            |Interface  |Interfaz de error model para el manejo de errores                                                                               |
+|ItemSummaryModel            |Interface  |Interfaz de item                                                                                                                |
+|SignatureModel              |Interface  |Interfaz de firma del autor                                                                                                     |
+|ItemResultModel             |Interface  |Interfaz de resultado de busqueda de items por string                                                                           |
+|RequestModel                |Interface  |Interfaz de peticiones http                                                                                                     |
+|Function Utils              |Utilities  |Funciones de utilidad                                                                                                           |
 
 
-The fllowing is a table that contains the main resources summary:
-|Resource Name            |Nature   |Explanation                                                                                                                |
-|-------------------------|---------|---------------------------------------------------------------------------------------------------------------------------|
-|[ContractsModule](src/app/contracts/contracts.module.ts)          |Module   |Contractors module block of functionality. It contains components and services related to only contractors functionalities.|
-|[ContractsComponent](src/app/contracts/components/contracts/contracts.component.ts)      |Component|Main section of contractors view                                                                                           |
-|[ContractsToolsComponent](src/app/contracts/components/contracts-tools/contracts-tools.component.ts)  |Component|Set of components that helps excecuting actions within contracts view (filtering adn adding)                               |
-|[CotractCardComponent](src/app/contracts/components/contract-card/contract-card.component.ts)     |Component|Contractor info as a card item (mobile)                                                                                    |
-|[ContractsTableComponent](src/app/contracts/components/contracts-table/contracts-table.component.ts)  |Component|Contractors info (desktop)                                                                                                 |
-|[StatusBadgeComponent](src/app/contracts/components/status-badge/status-badge.component.ts)     |Component|Item that indicates the state of a contractor                                                                              |
-|[ContractsActionsComponent](src/app/contracts/components/contracts-actions/contracts-actions.component.ts)|Component|Menu to perform action for a specific contractor (sign, delete, edit, view summary)                                        |
-|[NavigationComponent](src/app/navigation/components/nav/nav.component.ts)      |Component|Main navigation bar                                                                                                        |
-|[FloatingButtonComponent](src/app/shared/floating-button/floating-button.component.ts)  |Component|A rounded floatting button                                                                                                 |
-|[DateRangePickerComponent](src/app/shared/date-range-picker/date-range-picker.component.ts) |Component|Input that lets the user to select a date range                                                                            |
-|[SelectComponent](src/app/shared/select-input/select-input.component.ts)          |Component|Input that allows the user to select items within a list                                                                   |
-|[ContractorsService](src/app/core/services/contractors/contractors.service.ts)       |Service  |Contains all the methods and properties related to contractors info                                                        |
-|[ResponsiveService](src/app/core/services/responsive/responsive.service.ts)        |Service  |Contains all the methods and properties related to responsivness                                                           |
-|[SupportService](src/app/core/services/support/support.service.ts)           |Service  |Contains all the methods and properties related to support team                                                            |
-|[on-top-themes](src/on-top-themes.scss)            |Style    |Color palette and typography settings                                                                                      |
-|[ContractorModel](src/app/core/models/contractor.model.ts)          |Model    |Contractor interface                                                                                                       |
-|[ContractorFilterModel](src/app/core/models/contractors-filter.model.ts)    |Model    |Contractors' filter interface                                                                                              |
-|[DateRangeModel](src/app/core/models/date-range.model.ts)           |Model    |Date range interface                                                                                                       |
-|[NavItemModel](src/app/core/models/nav-item.model.ts)             |Model    |Navigation item interface                                                                                                  |
-
+La siguiente tabla explica los diferentes recursos del servidor:
 
 Doing an analysis of the components and the requirements I decided to use a set of Angular Material components and functionalities:
 ![Tools](src/readme-assets/tools1.png)
