@@ -3,69 +3,55 @@ var router = express.Router();
 var FetchWrapper = require('../utils/fetchWrapper');
 var utilFunctions = require('../utils/function-utils');
 var CustomError = require('../utils/customError');
+var Meli = require('../utils/meli')
 
 const meliAPI = new FetchWrapper('https://api.mercadolibre.com')
 const api = new FetchWrapper('http://localhost:3000', false)
 
+const meliService = new Meli();
+
 /* GET items listing that matches a query. */
 router.get('/',(req, res) => {
+    meliService.searchItemsByQuery(req.query.q, req.query.limit)
 
-    meliAPI.get(`sites/MLA/search?q=${req.query.q}&limit=${req.query.limit}`)
-    .then((data) => {
-      let {results} = data
+    const result = meliService.getItemsResult$().subscribe(
+      data => {
+        console.log('ayy')
+        res.send(JSON.stringify(utilFunctions.addSignature(data)))
+        result.unsubscribe();
+        return
+      })
 
-      if(results.length === 0) {
-        throw new CustomError('Lo sentimos, no encontramos items para esta busqueda', 404)
-      }
-
-      const mostRepeatedCat = utilFunctions.getMostRepeatedItem(results.map(result => result.category_id))
-
-      api.get(`categories/${mostRepeatedCat}`)
-      .then((categories) => {
-        utilFunctions.getCategoriesNameAndLink(categories)
-        .then(categoriesInfo =>{
-          results = {
-            ...{}, 
-            items: results.map(result => utilFunctions.mapItem(result)), 
-            categories: categoriesInfo
-          }
-          res.send(JSON.stringify(utilFunctions.addSignature(results)))
-        }).catch(error => res.status(error.status).send(error.message))
-      }).catch(error => res.status(error.status).send(error.message))
-
-    }).catch(error => res.status(error.status).send(error.message))
+    const meliError = meliService.error$
+    .subscribe(
+      error => {
+        console.log('juemama', error.message)
+        res.status(error.status).send(error)
+        meliError.unsubscribe();
+        return
+    })
   }
-
 );
 
 /* GET item info by id. */
 router.get('/:id',(req, res) => {
+    meliService.searchItemById(req.params.id);
+    meliService.searchItemDescription(req.params.id)
+    meliService.getItem$().subscribe(item => meliService.searchCategoryPathRoot(item.category_id));
 
-  const promisArr = [
-    meliAPI.get(`items/${req.params.id}`),
-    meliAPI.get(`items/${req.params.id}/description`)
-  ]
+    const result = meliService.getItemInfo$().subscribe(
+      data => {
+        result.unsubscribe();
+        return res.send(JSON.stringify(utilFunctions.addSignature(data)))
+      }
+    )
 
-  Promise.all(promisArr).then(([item, description])=>{
-    let result = {
-        ...{},
-        item: mapItem({...item,...description})
-    }
-    api.get(`categories/${item.category_id}`)
-    .then((categories) => {
-      utilFunctions.getCategoriesNameAndLink(categories)
-      .then(categoriesInfo => {
-        result = {
-          ...result,
-          item: {
-            ...result.item,
-            categories: categoriesInfo
-          }
-        }
-        res.send(JSON.stringify(utilFunctions.addSignature(result)))
-      })
-    })
-  }).catch(error => res.status(404).send('Lo sentimos, no encontramos items para esta busqueda'))
+    // const meliError = meliService.error$.subscribe(
+    //   error => {
+    //     console.log(error)
+    //       meliError.unsubscribe();
+    //       return res.status(error.status).send(error.message)
+    // })
 }
 
 );

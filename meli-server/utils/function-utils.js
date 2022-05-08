@@ -12,7 +12,6 @@ const getMostRepeatedItem = (arr) => {
             return acc
         }
     },[])
-
     return countArr.sort((a,b)=> b.count - a.count)[0].key
 
 }
@@ -66,9 +65,18 @@ const mapItem = (item) =>{
         condition: item.condition,
         free_shipping: item.shipping.free_shipping,
         city: item.address ? item.address.city_name : '',
-        description: item.plain_text ? item.plain_text : '',
-        sold_quantity: item.sold_quantity
+        sold_quantity: item.sold_quantity,
+        category_id: item.category_id
     })
 }
 
-module.exports = {getMostRepeatedItem, addSignature, getCategoriesNameAndLink, mapItem};
+const reOrderCategoriesArray = (array1, array2) => {
+    return array1.map(
+        category => ({
+            description: category.name, 
+            link: array2.find(cat => cat.id === category.id).link
+        })
+    )
+} 
+
+module.exports = {getMostRepeatedItem, addSignature, getCategoriesNameAndLink, mapItem, reOrderCategoriesArray};
