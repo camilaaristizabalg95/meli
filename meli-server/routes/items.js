@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
-var FetchWrapper = require('../utils/fetchWrapper');
+var FetchWrapper = require('../services/http/fetchWrapper');
 var utilFunctions = require('../utils/function-utils');
 var CustomError = require('../utils/customError');
-var Meli = require('../utils/meli')
+var Meli = require('../services/meli/meli')
 const rxjs = require('rxjs')
 
 

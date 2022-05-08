@@ -1,7 +1,7 @@
 const rxjs = require('rxjs')
-var FetchWrapper = require('../utils/fetchWrapper');
-var CustomError = require('./customError')
-var utilsFunctions = require('../utils/function-utils');
+var FetchWrapper = require('../http/fetchWrapper');
+var CustomError = require('../../utils/customError')
+var utilsFunctions = require('../../utils/function-utils');
 
 class Meli{
 

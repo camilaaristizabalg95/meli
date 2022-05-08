@@ -1,4 +1,4 @@
-var FetchWrapper = require('../utils/fetchWrapper');
+var FetchWrapper = require('../services/http/fetchWrapper');
 
 const getMostRepeatedItem = (arr) => {
     const countArr = arr.reduce((acc,key)=> {
@@ -54,4 +54,4 @@ const reOrderCategoriesArray = (array1, array2) => {
     )
 } 
 
-module.exports = {getMostRepeatedItem, addSignature, getCategoriesNameAndLink, mapItem, reOrderCategoriesArray};
+module.exports = {getMostRepeatedItem, addSignature, mapItem, reOrderCategoriesArray};
