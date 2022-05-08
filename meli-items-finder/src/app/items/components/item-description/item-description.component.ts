@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ItemsService } from 'src/app/core/services/items.service';
+import { ItemsService } from 'src/app/core/services/items/items.service';
 import { Observable } from 'rxjs';
 import { ItemSummaryModel } from 'src/app/core/models/item-summary.model';
-import { PreloaderService } from 'src/app/core/services/preloader.service';
+import { PreloaderService } from 'src/app/core/services/preloader/preloader.service';
 
 @Component({
   selector: 'item-description',

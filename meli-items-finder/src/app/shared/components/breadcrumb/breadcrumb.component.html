@@ -1,5 +1,5 @@
 <div class="breadcrumb-ctr">
-    <span *ngFor="let breadcrumb of (breadcrumbs$ | async); let i = index">
+    <span (click)="navigateTo(breadcrumb.link)" *ngFor="let breadcrumb of (breadcrumbs$ | async); let i = index">
         {{breadcrumb.description}}
         <span *ngIf="i != (breadcrumbs$ | async).length -1">&gt;</span>
     </span>

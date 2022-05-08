@@ -1,4 +1,5 @@
 import { SignatureModel } from './signature.model'
+import { BreadcrumbModel } from './breadcrumb.model';
 
 export interface ItemSummaryModel{
     id: string;
@@ -10,7 +11,7 @@ export interface ItemSummaryModel{
     condition: string;
     sold_quantity?: number;
     description?: string;
-    categories: string[];
+    categories: BreadcrumbModel[];
 }
 
 export interface ItemModel extends SignatureModel{

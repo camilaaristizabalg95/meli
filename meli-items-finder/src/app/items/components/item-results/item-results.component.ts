@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 
 import { ItemSummaryModel } from '../../../core/models/item-summary.model'
 import { Observable } from 'rxjs';
-import { ItemsService } from 'src/app/core/services/items.service';
+import { ItemsService } from 'src/app/core/services/items/items.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { PreloaderService } from 'src/app/core/services/preloader.service';
+import { PreloaderService } from 'src/app/core/services/preloader/preloader.service';
 
 @Component({
   selector: 'app-item-results',
@@ -25,7 +25,7 @@ export class ItemResultsComponent implements OnInit {
 
   ngOnInit(): void {
     this.routeService.queryParams.subscribe(
-      params => this.itemsService.searchItemsByQuery(params['q'])
+      params => this.itemsService.searchItemsByQuery(params['search'])
     )
   }
 

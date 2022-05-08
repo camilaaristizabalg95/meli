@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BreadcrumbsService } from 'src/app/core/services/breadcrumbs.service';
+import { BreadcrumbsService } from 'src/app/core/services/breadcrumbs/breadcrumbs.service';
 
 @Component({
   selector: 'app-page-not-found',

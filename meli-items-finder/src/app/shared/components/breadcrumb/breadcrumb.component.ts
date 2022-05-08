@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BreadcrumbsService } from 'src/app/core/services/breadcrumbs.service';
+import { BreadcrumbsService } from 'src/app/core/services/breadcrumbs/breadcrumbs.service';
 import { Observable } from 'rxjs';
 import { BreadcrumbModel } from 'src/app/core/models/breadcrumb.model';
 
@@ -17,6 +17,10 @@ export class BreadcrumbComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+  }
+
+  navigateTo(link: string){
+    console.log(`Navigate to ${link} ⛵️`)
   }
 
 }
