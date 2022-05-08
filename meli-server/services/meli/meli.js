@@ -22,13 +22,6 @@ class Meli{
         return this._item$;
     }
 
-    // getError$(){
-    //     return this.error$
-    //     .pipe(
-    //         rxjs.take(1)
-    //     )
-    // }
-
     getItemsResult$(){
         return rxjs.zip(
             this._items$, 
@@ -105,15 +98,6 @@ class Meli{
         infoResults.then(()=>{
             this._categoriesInfo$.next(utilsFunctions.reOrderCategoriesArray(categories, categoriesInfo))
         })
-    }
-
-    clearAll(){
-        categories,length = 0;
-        this._item$.next(null);
-        this._items$.next(null);
-        this._categoriesInfo$.next(null);
-        this._itemDescription$.next(null)
-        this.error$.next(null)
     }
 }
 
