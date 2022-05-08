@@ -12,6 +12,7 @@ class Meli{
     _itemDescription$ = new rxjs.Subject()
 
     error$ = new rxjs.Subject()
+
     
     constructor(){
         this.api = new FetchWrapper('https://api.mercadolibre.com');
@@ -57,7 +58,9 @@ class Meli{
     searchItemsByQuery(query = '', limit = 4){
         this.api.get(`sites/MLA/search?q=${query}&limit=${limit}`)
         .then(data => {
-            if(!data.results.length) throw new CustomError('Not found', 404)
+            if(!data.results.length) {
+                throw new CustomError('Not found', 404)
+            }
             const mostRepeatedCategory = utilsFunctions.getMostRepeatedItem(data.results.map(result => result.category_id));
             this._items$.next(data.results.map(result => utilsFunctions.mapItem(result)));
             this.searchCategoryPathRoot(mostRepeatedCategory);
@@ -80,7 +83,6 @@ class Meli{
     }
 
     searchCategoryPathRoot(categoryId){
-        console.log(categoryId)
         this.api.get(`categories/${categoryId}`)
         .then(data => {
             this.categories = [...data.path_from_root];
@@ -103,6 +105,15 @@ class Meli{
         infoResults.then(()=>{
             this._categoriesInfo$.next(utilsFunctions.reOrderCategoriesArray(categories, categoriesInfo))
         })
+    }
+
+    clearAll(){
+        categories,length = 0;
+        this._item$.next(null);
+        this._items$.next(null);
+        this._categoriesInfo$.next(null);
+        this._itemDescription$.next(null)
+        this.error$.next(null)
     }
 }
 

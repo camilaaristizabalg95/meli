@@ -6,7 +6,6 @@ class FetchWrapper{
     }
 
     get(endpoint){
-        console.log(`${this.baseUrl}/${endpoint}`)
         let data = '';
         return new Promise((resolve)=>{
             https.get(`${this.baseUrl}/${endpoint}`,(res => {
