@@ -41,9 +41,9 @@ class Meli{
             (item, description, categories)=>({
                 item: {
                     ...item,
-                    categories: categories
-                },
-                description: description,
+                    categories: categories,
+                    description: description,
+                }
             })
         )
     }
