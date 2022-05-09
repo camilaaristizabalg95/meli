@@ -1,4 +1,4 @@
-<mat-card class="item-ctr" *ngIf="!( loading$ | async);else skeleton">
+<mat-card [tabIndex]="'0'" class="item-ctr" *ngIf="!( loading$ | async);else skeleton">
     <item-ext-info 
     [image]="(item$ | async)?.picture"
     [description]="(item$ | async)?.description"

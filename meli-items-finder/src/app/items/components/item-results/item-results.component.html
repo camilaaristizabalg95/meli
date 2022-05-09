@@ -1,7 +1,7 @@
-<section class="items-ctr">
-    <div class="results" *ngIf="!( loading$ | async); else skeleton">
+<section [tabIndex]="'0'" class="items-ctr">
+    <div [tabIndex]="'1'" class="results" *ngIf="!( loading$ | async); else skeleton">
         <item-card 
-        *ngFor="let item of (items$ | async)"
+        *ngFor="let item of (items$ | async); index as i"
         [item]="item"
         (click)="seeItem(item.id)"
         class="item-card"></item-card>
