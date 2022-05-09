@@ -1,10 +1,22 @@
 const https = require('https')  
 
+/**
+ * Clase para el manejo de las peticiones http
+ */
 class FetchWrapper{
-    constructor(url, https =true){
+
+    /**
+     * 
+     * @param url base url de la api
+     */
+    constructor(url){
         this.baseUrl = url;
     }
 
+    /**
+     * Realiza la petición get y retorna una promesa con el resultado
+     * @param endpoint complemento de ruta para la peticioón
+     */
     get(endpoint){
         let data = '';
         return new Promise((resolve)=>{

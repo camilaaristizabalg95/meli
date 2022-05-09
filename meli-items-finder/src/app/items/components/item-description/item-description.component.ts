@@ -12,7 +12,17 @@ import { PreloaderService } from 'src/app/core/services/preloader/preloader.serv
 })
 export class ItemDescriptionComponent implements OnInit {
 
+  /**
+   * Obtiene el último valor emitido para la información
+   * de un item dado un id. 
+   */
   item$: Observable<ItemSummaryModel> = this.itemsService.getItemInfo$();
+   /**
+   * Obtiene el último valor emitido para
+   * el preloader (indica si la petición ya
+   * fue resuelta y en base a eso muestra o
+   * esconde el skeleton)
+   */
   loading$: Observable<boolean> = this.preloaderService.getLoading$();
 
   constructor(
@@ -21,6 +31,11 @@ export class ItemDescriptionComponent implements OnInit {
     private preloaderService: PreloaderService
   ) { }
 
+  /**
+   * Obtiene el path param id de la ruta
+   * para ejecutar la busqueda de un item por id
+   * llamando al servicio itemsService
+   */
   ngOnInit(): void {
     this.route.params.subscribe(pathParams => this.itemsService.searchItemById(pathParams['id']))
   }

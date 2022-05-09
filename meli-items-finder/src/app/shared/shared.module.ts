@@ -18,7 +18,11 @@ export const SHARED_MODULES: any[] = [
   FormsModule
 ]
 
-
+/**
+ * Importación y exportación de todos los
+ * modulos y componentes que se compartiran
+ * a todo el aplicativo 
+ */
 @NgModule({
   declarations: [
     ...SHARED_COMPONENTS
