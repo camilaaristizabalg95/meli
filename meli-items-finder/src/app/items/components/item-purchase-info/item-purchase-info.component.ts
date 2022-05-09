@@ -9,6 +9,12 @@ import { PriceModel } from '../../../core/models/item-summary.model'
 })
 export class ItemPurchaseInfoComponent implements OnInit {
 
+  /**
+   * @param condition Representa la condicioón del item
+   * @param soldQuantity Representa la cantidad vendida por
+   * vendedor del item
+   * @param title Representa el título del item
+   */
   @Input('condition') condition: string;
   @Input('soldQuantity') soldQuantity: number;
   @Input('title') title: string;

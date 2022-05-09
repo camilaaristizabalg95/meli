@@ -8,6 +8,9 @@ import { ItemSummaryModel } from '../../../core/models/item-summary.model';
 })
 export class ItemCardComponent implements OnInit {
 
+  /**
+   * @param item Representa la informacioón de un item
+   */
   @Input('item') item: ItemSummaryModel;
 
   constructor() { }

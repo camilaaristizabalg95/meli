@@ -1,5 +1,8 @@
-var FetchWrapper = require('../services/http/fetchWrapper');
-
+/**
+ * Obtiene el item más repetido en un arreglo
+ * @param arr arreglo con items
+ * @returns Valor del item más repetido
+ */
 const getMostRepeatedItem = (arr) => {
     const countArr = arr.reduce((acc,key)=> {
         if(acc.some(item => item.key === key)) 
@@ -16,6 +19,11 @@ const getMostRepeatedItem = (arr) => {
 
 }
 
+/**
+ * Agrega la firma a un objeto dato
+ * @param obj objeto que se desea firmar
+ * @returns objeto firmado
+ */
 const addSignature = (obj) => {
     return ({
         ...obj, 
@@ -26,7 +34,13 @@ const addSignature = (obj) => {
     })
 }
 
-
+/**
+ * Mapea los valores necesarios del item
+ * retornado por la API de MeLi
+ * @param item item con todas las propiedades
+ * retornadas por la app de MeLi
+ * @returns item con las propiedades necesarias
+ */
 const mapItem = (item) =>{
     return ({
         id: item.id,
@@ -45,6 +59,12 @@ const mapItem = (item) =>{
     })
 }
 
+/**
+ * Dados dos arreglos ordena el arreglo 2 en
+ * base al arreglo 2
+ * @param array1 arreglo ordenado
+ * @param array2 arreglo a ser ordenado
+ */
 const reOrderCategoriesArray = (array1, array2) => {
     return array1.map(
         category => ({

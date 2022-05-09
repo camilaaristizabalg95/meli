@@ -3,6 +3,9 @@ import { Routes, RouterModule } from '@angular/router';
 import { ItemResultsComponent } from './components/item-results/item-results.component';
 import { ItemDescriptionComponent } from './components/item-description/item-description.component';
 
+/**
+ * Rutas dentro del módulo /items
+ */
 const routes: Routes = [
   {
     path: '',

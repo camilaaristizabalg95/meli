@@ -12,6 +12,10 @@ export class PageNotFoundComponent implements OnInit {
     private breadcrumbsService: BreadcrumbsService
   ) { }
 
+  /**
+   * Limpia los breadcrumbs de la app si no se encontró
+   * un resultado para la búsqueda
+   */
   ngOnInit(): void {
     this.breadcrumbsService.clearBreadcrumbs();
   }

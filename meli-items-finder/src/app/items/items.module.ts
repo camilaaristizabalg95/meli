@@ -10,7 +10,13 @@ import { SharedModule } from '../shared/shared.module';
 import { ItemsService } from '../core/services/items/items.service';
 
 
-
+/**
+ * Modulo de items que se cargará
+ * cuando se active la ruta /items.
+ * Una vez esto ocurra se cargaran 
+ * las dependencias necesarias para
+ * correr este módulo.
+ */
 @NgModule({
   declarations: [
     ItemCardComponent, 
